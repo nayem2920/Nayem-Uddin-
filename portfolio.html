@@ -1,1 +1,380 @@
-এখানে আপনার HTML বসাবেন✅
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nayem Uddin Siraji | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #0ea5e9;
+            --border-color: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            --ring-gradient: conic-gradient(#0ea5e9, #22d3ee, #818cf8, #c084fc, #0ea5e9);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-color: #f1f5f9;
+                --card-bg: #ffffff;
+                --text-primary: #1e293b;
+                --text-secondary: #64748b;
+                --accent: #0284c7;
+                --border-color: #e2e8f0;
+                --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--ring-gradient);
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .avatar-inner {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .avatar-img {
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .name-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .verified-badge {
+            color: #1d9bf0;
+            font-size: 1.2rem;
+        }
+
+        .typing-container {
+            height: 24px;
+            margin-bottom: 25px;
+            font-weight: 500;
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        #cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--accent);
+            margin-left: 2px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .info-table {
+            width: 100%;
+            margin-bottom: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .label {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .value {
+            font-weight: 600;
+        }
+
+        .btn-contact {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #0ea5e9, #818cf8);
+            color: white;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.1s;
+        }
+
+        .btn-contact:active {
+            transform: scale(0.97);
+        }
+
+        .contact-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s;
+            opacity: 0;
+        }
+
+        .contact-content.show {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .full-width { grid-column: span 2; }
+        .bg-fb { background-color: #1877f2; }
+        .bg-msg { background-color: #0084ff; }
+        .bg-wa { background-color: #25d366; }
+        .bg-tg { background-color: #0088cc; }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-row i {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .social-row i:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="avatar-container">
+                <div class="ring"></div>
+                <div class="avatar-inner">
+                    <img src="https://perfect-silver-izkfdk3p1s.edgeone.app/FB_IMG_1766505114746.jpg" alt="Profile" class="avatar-img">
+                </div>
+            </div>
+
+            <div class="name-wrapper">
+                <h1 class="name">Nayem Uddin Siraji</h1>
+                <span class="fa-stack verified-badge" style="vertical-align: middle;">
+                    <i class="fa-solid fa-certificate fa-stack-2x"></i>
+                    <i class="fa-solid fa-check fa-stack-1x fa-inverse" style="font-size: 0.5em;"></i>
+                </span>
+            </div>
+
+            <div class="typing-container">
+                <span id="typing-text"></span><span id="cursor">|</span>
+            </div>
+
+            <div class="info-table">
+                <div class="info-row">
+                    <span class="label">Age</span>
+                    <span class="value">25</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Gender</span>
+                    <span class="value">Male</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Religion</span>
+                    <span class="value">Islam</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Country</span>
+                    <span class="value">Bangladesh</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Address</span>
+                    <span class="value">Gazipur, Dhaka, Bangladesh</span>
+                </div>
+            </div>
+
+            <button class="btn-contact" id="contactBtn">
+                Contact Me <i class="fa-solid fa-chevron-down" id="arrowIcon"></i>
+            </button>
+
+            <div class="contact-content" id="contactSection">
+                <div class="contact-grid">
+                    <a href="https://www.facebook.com/naime.uddin.169?mibextid=ZbWKwL" class="contact-link bg-fb full-width" target="_blank">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://www.messenger.com/channel/muslimshophouse/AbaOGM9j2B09KgIO/" class="contact-link bg-msg" target="_blank">
+                        <i class="fa-brands fa-facebook-messenger"></i> Messenger
+                    </a>
+                    <a href="https://wa.me/8801735932147" class="contact-link bg-wa" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://t.me/muslimshophouse" class="contact-link bg-tg full-width" target="_blank">
+                        <i class="fa-brands fa-telegram"></i> Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-text">&copy; 2026 Nayem Uddin Siraji. All rights reserved.</p>
+            <div class="social-row">
+                <a href="https://www.facebook.com/naime.uddin.169?mibextid=ZbWKwL" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://wa.me/8801735932147" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://t.me/muslimshophouse" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const bioText = "I'm a Artist, Teacher, and Writer.";
+        const typingSpeed = 100;
+        const textElement = document.getElementById('typing-text');
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < bioText.length) {
+                textElement.textContent += bioText.charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingSpeed);
+            } else {
+                document.getElementById('cursor').style.animation = "blink 0.8s infinite";
+            }
+        }
+
+        const contactBtn = document.getElementById('contactBtn');
+        const contactSection = document.getElementById('contactSection');
+        const arrowIcon = document.getElementById('arrowIcon');
+
+        contactBtn.addEventListener('click', () => {
+            contactSection.classList.toggle('show');
+            if (contactSection.classList.contains('show')) {
+                arrowIcon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                arrowIcon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+
+        window.onload = () => {
+            setTimeout(type, 500);
+        };
+    </script>
+</body>
+  </html>
